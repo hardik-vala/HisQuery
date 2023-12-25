@@ -1,0 +1,9 @@
+npm-debug.log
+node_modules/
+dist/
+tmp/
+
+.env.production
+.env.development
+
+.DS_Store
