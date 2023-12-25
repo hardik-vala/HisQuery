@@ -1,5 +1,5 @@
 enum AppMessageType {
-  SHOW_TOAST = 'showToast',
+  SHOW_TOAST = "showToast",
 }
 
 interface AppMessage {
@@ -11,32 +11,52 @@ interface ShowToastPayload {
   message: string;
 }
 
-const TOAST_LIFETIME_MS = 3000;
+const TOAST_LIFETIME_MS = 2000;
 
-chrome.runtime.onMessage.addListener((msg: AppMessage, sender, sendResponse) => {
-  if (msg.type === 'showToast' && typeof msg.payload.message !== 'undefined') {
-    showToast(msg.payload.message);
+chrome.runtime.onMessage.addListener(
+  (msg: AppMessage, sender, sendResponse) => {
+    if (
+      msg.type === "showToast" &&
+      typeof msg.payload.message !== "undefined"
+    ) {
+      showToast(msg.payload.message);
+    }
+    return true;
   }
-  return true;
-});
+);
 
 function showToast(message: string) {
-  const toast = document.createElement('div');
-  toast.style.position = 'fixed';
-  toast.style.top = '20px';
-  toast.style.right = '20px';
-  toast.style.padding = '15px 25px'; // Increased padding
-  toast.style.color = '#fff'; // White text
-  toast.style.backgroundColor = '#323232'; // Dark grey background
-  toast.style.borderRadius = '5px'; // Rounded corners
-  toast.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.1)'; // Shadow for depth
-  toast.style.fontFamily = 'Arial, sans-serif'; // Font family
-  toast.style.fontSize = '16px'; // Font size
-  toast.style.zIndex = '10000'; // Ensure it appears above other elements
+  const toast = document.createElement("div");
+  toast.style.position = "fixed";
+  toast.style.top = "20px";
+  toast.style.right = "20px";
+  toast.style.padding = "15px 25px";
+  toast.style.color = "#EFF2FD"; // Based on whiteAlpha.900
+  toast.style.backgroundColor = "#152536"; // Based on gray.900
+  toast.style.borderRadius = "5px";
+  toast.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.1)";
+  toast.style.fontFamily =
+    'Schibsted Grotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+  toast.style.fontSize = "16px";
+  toast.style.zIndex = "10000";
+  toast.style.opacity = "0"; // Start with opacity 0 for fade in
+  toast.style.transition = "opacity 0.25s ease-in-out"; // Transition for fade in/out
   toast.textContent = message;
   document.body.appendChild(toast);
 
+  // Fade in
   setTimeout(() => {
-    toast.remove();
+    toast.style.opacity = "1";
+  }, 100); // Small delay before starting the fade in
+
+  // Fade out and remove
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    // Remove the element after the transition ends
+    setTimeout(() => {
+      if (document.body.contains(toast)) {
+        document.body.removeChild(toast);
+      }
+    }, 250); // Match this delay with the duration of the transition
   }, TOAST_LIFETIME_MS);
 }
