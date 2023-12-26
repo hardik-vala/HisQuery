@@ -91,4 +91,4 @@ Load `dist` directory
 
 ## Reporting Bugs
 
-You can submit a bug [here]() <- TODO.
+You can submit a bug [here](https://github.com/hardik-vala/HisQuery/issues).
