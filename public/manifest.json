@@ -31,15 +31,11 @@
     "service_worker": "js/background.js"
   },
   "permissions": [
-    "activeTab",
     "favicon",
     "history",
-    "storage",
     "tabs"
   ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  "host_permissions": [],
   "commands": {
     "_execute_action": {
       "suggested_key": {
