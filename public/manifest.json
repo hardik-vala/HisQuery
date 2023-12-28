@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HisQuery",
-  "description": "Search your browser history efficiently.",
+  "description": "Efficiently search your browser history.",
   "version": "0.1.0",
   "icons": {
     "16": "icon128.png",

@@ -1,7 +1,7 @@
 {
   "name": "hisquery",
   "version": "0.1.0",
-  "description": "Search your browser history efficiently.",
+  "description": "Efficiently search your browser history.",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
