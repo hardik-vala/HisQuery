@@ -35,7 +35,6 @@
     "history",
     "tabs"
   ],
-  "host_permissions": [],
   "commands": {
     "_execute_action": {
       "suggested_key": {
