@@ -1,10 +1,10 @@
+import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import App from "./components/App/App";
-import { ResultsContextProvider } from "./contexts/results/results";
-import { CurrentUserContextProvider } from "./contexts/currentUser/currentUser";
 import { AnalyticsContextProvider } from "./contexts/analytics/analytics";
+import { CurrentUserContextProvider } from "./contexts/currentUser/currentUser";
+import { ResultsContextProvider } from "./contexts/results/results";
 
 export const BG_COLOR = {
   dark: "#2D3C4C",
@@ -120,3 +120,13 @@ root.render(
     <Popup />
   </React.StrictMode>
 );
+
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  chrome.runtime.sendMessage({
+    type: "popupOpened",
+    payload: {
+      popupOpened: true,
+      activeTabId: tabs[0].id,
+    },
+  });
+});
