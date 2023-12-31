@@ -15,10 +15,14 @@ function showToastOnWebPage(result: Result) {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const activeTab = tabs[0];
     if (activeTab.id) {
+      const message = result.title.length > 50 
+        ? `'${result.title.substring(0, 50)}...'`
+        : `${result.title}`;
+
       chrome.tabs.sendMessage(activeTab.id, {
-        type: 'showToast',
+        type: "showToast",
         payload: {
-          message: `Copied ${result.title} to clipboard!`,
+          message: `Copied ${message} to clipboard!`,
         },
       });
     }
