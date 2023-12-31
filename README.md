@@ -1,5 +1,13 @@
 # HisQuery
 
+A Chrome Extension to efficiently search your browser history using keystrokes.
+
+Just hit ⌘ + e to open the popup and then begin typing keywords to filter your history.
+
+![Screenshot](assets/screenshot.png)
+
+Useful for anybody who finds themselves visiting or copying links they've previously accessed.
+
 ## Installation
 
 ### From Source
